@@ -1,0 +1,332 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0",
+    "title": "AttributeListOwnerAPI",
+    "description": "Allows access to, and the ability to update the 'attributeList' or 'attributeOwners' table."
+  },
+  "servers": [
+    {
+      "description": "AttributeListOwnerAPI",
+      "url": "https://tjtdxia6pa.execute-api.us-west-2.amazonaws.com/default/{path+}"
+    }
+  ],
+  "paths": {
+    "/attributeOwners": {
+      "get": {
+        "operationId": "getAllAttributeOwnersValues",
+        "description": "This method returns all active values from the attributeOwners table.",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/200"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "operationId": "addValueToAttributeOwnersTable",
+        "description": "Adds the values to the attributeOwners table in the database.",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/attributeOwnersPostBody"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/200"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteValueFromAttributeOwnersTable",
+        "description": "This method deletes the attributes from the database.",
+        "parameters": [
+          {
+            "name": "itemsToDelete",
+            "in": "query",
+            "description": "This method receives an object containing 3 fields, 1. id 2. attribute_name 3. attribute_value, then JSON.stringify this object and send it in as a querystring parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/200"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/attributeList": {
+      "get": {
+        "operationId": "getAllAttributeListValues",
+        "description": "This method returns all values from the attributeList table.",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/200"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "operationId": "addValueToAttributeListTable",
+        "description": "Adds the attributes to the Aurora DB and the Redis cache.",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/attributeListPandPBody"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/200"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateValueInAttributeListTable",
+        "description": "Adds the attributes to the Aurora DB and the Redis cache.",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/attributeListPandPBody"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/200"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteValueFromAttributeListTable",
+        "description": "This delete method deletes the attributes from the database.",
+        "parameters": [
+          {
+            "name": "itemsToDelete",
+            "in": "query",
+            "description": "Create an array of objects, each object in the array containing 3 fields, 1. id 2. attribute_name 3. attribute_value, then JSON.stringify this array and send it in as a querystring parameter. **NOTE**: If you assign \"deleteAllValues\" to the attribute_value field in any object, all attribute_values for that id and attribute_name will be deleted.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/200"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/activeAttributeList": {
+      "get": {
+        "operationId": "getAllActiveAttributeListValues",
+        "description": "This method returns all active values from the attributeList table.",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/200"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "requestBodies": {
+      "attributeOwnersPostBody": {
+        "description": "How the body should be formatted for POST and PUT for the attributeOwners path.",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "attribute_id": {
+                  "type": "string"
+                },
+                "owner_id": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "attributeListPandPBody": {
+        "description": "How the body should be formatted for POST and PUT for the attributeList path.",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "attribute_name": {
+                  "type": "string"
+                },
+                "attribute_value": {
+                  "type": "string"
+                },
+                "expires_date": {
+                  "type": "string"
+                },
+                "active": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "Success.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "example": "Success."
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Malformed Request.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "example": "Malformed Request."
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Failure to authenticate.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "example": "Failure to authenticate."
+            }
+          }
+        }
+      },
+      "403": {
+        "description": "Forbidden",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "example": "Forbidden."
+            }
+          }
+        }
+      },
+      "500": {
+        "description": "Internal server error.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "example": "Internal server error."
+            }
+          }
+        }
+      }
+    }
+  }
+}
